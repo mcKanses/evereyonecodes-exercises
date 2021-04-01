@@ -13,18 +13,19 @@ public class NumberNameFinder extends NumberNamesDictionary {
         List<String> filtered = new ArrayList<String>();
 
         numNames.stream().forEach(numName -> {
-           int numeric = this.getNumber(numName).get();
+           int numeric = this.getNumber(numName).orElse(-1);
 
            if (numeric >= 0 && numeric <= 9) {
                String name = this.getName(numeric).get();
                filtered.add(name);
            }
-
         });
 
         filtered.stream().sorted(Comparator.comparing(String::toString).reversed());
 
         String lastValue = filtered.stream().findFirst().get().toUpperCase(Locale.ROOT);
+        System.out.println(lastValue);
+
         return lastValue;
     }
 }

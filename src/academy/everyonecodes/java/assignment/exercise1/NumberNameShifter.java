@@ -8,7 +8,7 @@ public class NumberNameShifter extends NumberNamesDictionary {
         List<String> shifted = new ArrayList<String>();
 
         numNames.stream().forEach(numName -> {
-            int numeric = (this.getNumber(numName).get()) + 1;
+            int numeric = (this.getNumber(numName).orElse(10)) + 1;
             if (numeric >= 0 && numeric <= 9) {
                 String name = this.getName(numeric).get();
                 shifted.add(name);
